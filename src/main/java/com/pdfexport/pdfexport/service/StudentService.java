@@ -16,4 +16,5 @@ public interface StudentService {
     public String save(StudentDTO studentDTO);
     public List<StudentDTO> getAll();
     public void test(HttpServletResponse response) throws IOException, JRException;
+    public void testYellow(HttpServletResponse response) throws IOException, JRException;
 }

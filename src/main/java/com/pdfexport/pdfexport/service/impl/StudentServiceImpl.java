@@ -73,4 +73,36 @@ public class StudentServiceImpl implements StudentService {
 //        JasperExportManager.exportReportToPdfFile(jasperPrint,"D:\\Working Directory\\pdfexport\\sample.pdf");
         System.out.println("PDF-Create");
     }
+
+    @Override
+    public void testYellow(HttpServletResponse response) throws IOException, JRException {
+        List<Student> all = repo.findAll();
+
+        File file = ResourceUtils.getFile("src/main/resources/jasper/a4-yellow.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(all);
+
+        String logo = "src/main/java/com/pdfexport/pdfexport/assets/4wd.png";
+        String email = "src/main/java/com/pdfexport/pdfexport/assets/email.png";
+        String phone = "src/main/java/com/pdfexport/pdfexport/assets/phone.png";
+        String home = "src/main/java/com/pdfexport/pdfexport/assets/home.png";
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("title", "Sample");
+        parameters.put("logoPath", logo);
+        parameters.put("invoiceNo", "001");
+        parameters.put("tot", "$2500");
+        parameters.put("homeIcon", home);
+        parameters.put("webSite", "www.sample.com");
+        parameters.put("phoneIcon", phone);
+        parameters.put("phoneNumber", "071 123-4564");
+        parameters.put("emailIcon", email);
+        parameters.put("email", "sample@sample.com");
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(
+                jasperReport, parameters, dataSource);
+
+        JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
+        System.out.println("Yellow PDF-Create");
+    }
 }
