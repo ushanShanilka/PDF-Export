@@ -17,4 +17,6 @@ public interface StudentService {
     public List<StudentDTO> getAll();
     public void test(HttpServletResponse response) throws IOException, JRException;
     public void testYellow(HttpServletResponse response) throws IOException, JRException;
+    public void mm54(HttpServletResponse response) throws IOException, JRException;
+    public void mm80(HttpServletResponse response) throws IOException, JRException;
 }

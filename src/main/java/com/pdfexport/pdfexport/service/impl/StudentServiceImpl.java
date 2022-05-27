@@ -1,16 +1,11 @@
 package com.pdfexport.pdfexport.service.impl;
 
-
-import com.lowagie.text.pdf.PdfWriter;
-import com.pdfexport.pdfexport.controller.PDFExportController;
 import com.pdfexport.pdfexport.dto.StudentDTO;
 import com.pdfexport.pdfexport.entity.Student;
 import com.pdfexport.pdfexport.repo.StudentRepo;
 import com.pdfexport.pdfexport.service.StudentService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.export.*;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +14,8 @@ import org.springframework.util.ResourceUtils;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -77,6 +72,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void testYellow(HttpServletResponse response) throws IOException, JRException {
         List<Student> all = repo.findAll();
+        List<Object> objects = new ArrayList<>();
 
         File file = ResourceUtils.getFile("src/main/resources/jasper/a4-yellow.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
@@ -104,5 +100,58 @@ public class StudentServiceImpl implements StudentService {
 
         JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
         System.out.println("Yellow PDF-Create");
+    }
+
+    @Override
+    public void mm54(HttpServletResponse response) throws IOException, JRException {
+        List<Student> all = repo.findAll();
+
+        File file = ResourceUtils.getFile("src/main/resources/jasper/54mm.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(all);
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("title", "TITLE");
+        parameters.put("address", "No:99 Galle Road Panadura ");
+        parameters.put("contactNumber", "Tel : 071 1234-567");
+        parameters.put("invoiceNo", "001");
+        parameters.put("cashierName", "USHAN");
+        parameters.put("subTot", "220.00");
+        parameters.put("totAmount", "200.00");
+        parameters.put("cash", "500.00");
+        parameters.put("change", "300.00");
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(
+                jasperReport, parameters, dataSource);
+
+        JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
+
+        System.out.println("57mm PDF-Create");
+    }
+
+    @Override
+    public void mm80(HttpServletResponse response) throws IOException, JRException {
+        List<Student> all = repo.findAll();
+
+        File file = ResourceUtils.getFile("src/main/resources/jasper/80mm.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(all);
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("title", "TITLE");
+        parameters.put("address", "No:99 Galle Road Panadura ");
+        parameters.put("contactNumber", "Tel : 071 1234-567");
+        parameters.put("invoiceNo", "001");
+        parameters.put("cashierName", "USHAN");
+        parameters.put("subTot", "220.00");
+        parameters.put("totAmount", "200.00");
+        parameters.put("cash", "500.00");
+        parameters.put("change", "300.00");
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(
+                jasperReport, parameters, dataSource);
+
+        JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
+        System.out.println("80mm PDF-Create");
     }
 }

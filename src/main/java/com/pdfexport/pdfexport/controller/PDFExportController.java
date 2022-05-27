@@ -1,5 +1,6 @@
 package com.pdfexport.pdfexport.controller;
 
+
 import com.lowagie.text.DocumentException;
 import com.pdfexport.pdfexport.service.PDFGeneratorService;
 import com.pdfexport.pdfexport.service.StudentService;
@@ -65,6 +66,30 @@ public class PDFExportController {
         String headerValue = "attachment; filename=pdf_" + currentDateTime + ".pdf";
         response.setHeader(headerKey,headerValue);
         service.testYellow(response);
+    }
+
+    @GetMapping("/pdf/54mm")
+    public void test54mm(HttpServletResponse response) throws JRException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=pdf_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey,headerValue);
+        service.mm54(response);
+    }
+
+    @GetMapping("/pdf/80mm")
+    public void test80mm(HttpServletResponse response) throws JRException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=pdf_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey,headerValue);
+        service.mm80(response);
     }
 
 }

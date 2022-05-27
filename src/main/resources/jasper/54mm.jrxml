@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2022-05-23T13:56:28 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="57mm" pageWidth="161" pageHeight="842" columnWidth="121" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="63431c56-b67e-41d0-b5dd-01c45a0659ee">
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+    <property name="com.jaspersoft.studio.unit." value="mm"/>
+    <parameter name="address" class="java.lang.String"/>
+    <parameter name="contactNumber" class="java.lang.String"/>
+    <parameter name="subTot" class="java.lang.String"/>
+    <parameter name="totAmount" class="java.lang.String"/>
+    <parameter name="cash" class="java.lang.String"/>
+    <parameter name="change" class="java.lang.String"/>
+    <parameter name="title" class="java.lang.String"/>
+    <parameter name="invoiceNo" class="java.lang.String"/>
+    <parameter name="cashierName" class="java.lang.String"/>
+    <queryString language="SQL">
+        <![CDATA[select * from student]]>
+    </queryString>
+    <field name="id" class="java.lang.Long"/>
+    <field name="address" class="java.lang.String"/>
+    <field name="name" class="java.lang.String"/>
+    <group name="id">
+        <groupExpression><![CDATA[$F{id}]]></groupExpression>
+    </group>
+    <group name="name">
+        <groupExpression><![CDATA[$F{name}]]></groupExpression>
+    </group>
+    <group name="address">
+        <groupExpression><![CDATA[$F{address}]]></groupExpression>
+    </group>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="55" splitType="Stretch">
+            <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="0" y="10" width="121" height="20" uuid="ceab8d51-5699-4b62-84cc-b8d5c32a0312"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$P{address}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement positionType="Float" x="0" y="30" width="120" height="23" uuid="25ae13e4-181d-4ba0-b73c-df05764a1151"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{contactNumber}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="-10" width="120" height="20" uuid="babce944-f82f-4f10-8c8e-09515f612594"/>
+                <textElement textAlignment="Center">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="60">
+            <staticText>
+                <reportElement x="-11" y="0" width="60" height="20" uuid="5e1c2511-b493-4acd-814d-dc19c1072291"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Invoice No :]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="49" y="0" width="35" height="20" uuid="4df0e5d9-27e4-4b8e-abd8-910bb5a2997f"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{invoiceNo}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="-11" y="20" width="60" height="20" uuid="30e5e36a-e0d7-45f2-9714-b89cdf18c4a3"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Cashier :]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="32" y="20" width="41" height="20" uuid="4b09abb2-ff16-4b25-9027-d239f74fb621"/>
+                <textElement verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{cashierName}]]></textFieldExpression>
+            </textField>
+            <textField pattern="MMMMM dd, yyyy">
+                <reportElement x="-10" y="40" width="71" height="18" uuid="7c0d4d83-56eb-4a6d-acde-78f5df7c0d59"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+            <textField pattern="HH:mm">
+                <reportElement x="60" y="40" width="71" height="18" uuid="2e398ef4-7720-439d-9fc9-36e009c77918"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+    <detail>
+        <band height="24" splitType="Stretch">
+            <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+            <property name="com.jaspersoft.studio.unit.height" value="mm"/>
+            <textField isStretchWithOverflow="true">
+                <reportElement positionType="Float" x="-11" y="0" width="40" height="20" uuid="f0b0df21-0aeb-4a5d-a4f9-85ccd84bd086">
+                    <property name="com.jaspersoft.layout.grid.x" value="-1"/>
+                    <property name="com.jaspersoft.layout.grid.y" value="-1"/>
+                    <property name="com.jaspersoft.layout.grid.weight.x" value="1.0"/>
+                    <property name="com.jaspersoft.layout.grid.weight.y" value="1.0"/>
+                    <property name="com.jaspersoft.layout.grid.rowspan" value="1"/>
+                    <property name="com.jaspersoft.layout.grid.colspan" value="1"/>
+                    <property name="com.jaspersoft.layout.grid.weight.fixed" value="true"/>
+                </reportElement>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="40" y="0" width="40" height="20" uuid="69377282-b7a4-4cd1-832a-0e3084655550">
+                    <property name="com.jaspersoft.layout.grid.x" value="-1"/>
+                    <property name="com.jaspersoft.layout.grid.y" value="-1"/>
+                    <property name="com.jaspersoft.layout.grid.weight.x" value="1.0"/>
+                    <property name="com.jaspersoft.layout.grid.weight.y" value="1.0"/>
+                    <property name="com.jaspersoft.layout.grid.rowspan" value="1"/>
+                    <property name="com.jaspersoft.layout.grid.colspan" value="1"/>
+                    <property name="com.jaspersoft.layout.grid.weight.fixed" value="true"/>
+                </reportElement>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="90" y="0" width="41" height="20" uuid="2caccbb9-1998-4eb6-8896-3fda94ba16d7">
+                    <property name="com.jaspersoft.layout.grid.x" value="-1"/>
+                    <property name="com.jaspersoft.layout.grid.y" value="-1"/>
+                    <property name="com.jaspersoft.layout.grid.weight.x" value="1.0"/>
+                    <property name="com.jaspersoft.layout.grid.weight.y" value="1.0"/>
+                    <property name="com.jaspersoft.layout.grid.rowspan" value="1"/>
+                    <property name="com.jaspersoft.layout.grid.colspan" value="1"/>
+                    <property name="com.jaspersoft.layout.grid.weight.fixed" value="true"/>
+                </reportElement>
+                <textElement textAlignment="Right" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <pageFooter>
+        <band height="127">
+            <rectangle>
+                <reportElement positionType="Float" x="-11" y="5" width="142" height="115" uuid="9e2ae785-5146-4dc4-b311-553072bee6d0"/>
+                <graphicElement>
+                    <pen lineStyle="Dotted"/>
+                </graphicElement>
+            </rectangle>
+            <staticText>
+                <reportElement x="-10" y="6" width="80" height="15" uuid="ee9814dc-a267-4a08-bb26-fc030c9157f6"/>
+                <textElement>
+                    <font isBold="true"/>
+                    <paragraph leftIndent="2"/>
+                </textElement>
+                <text><![CDATA[Sub Total :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="-10" y="23" width="80" height="15" uuid="8c1dba2c-50f9-453d-87c0-f3835f20b259"/>
+                <textElement>
+                    <font isBold="true"/>
+                    <paragraph leftIndent="2"/>
+                </textElement>
+                <text><![CDATA[Total Amount :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="-10" y="40" width="80" height="15" uuid="d56987f9-cd63-4803-95f5-e67b0d628cc7"/>
+                <textElement>
+                    <font isBold="true"/>
+                    <paragraph leftIndent="2"/>
+                </textElement>
+                <text><![CDATA[Cash :]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="-10" y="58" width="80" height="15" uuid="56717c7c-bee5-409a-aca0-1df75b8568a9"/>
+                <textElement>
+                    <font isBold="true"/>
+                    <paragraph leftIndent="2"/>
+                </textElement>
+                <text><![CDATA[Change :]]></text>
+            </staticText>
+            <line>
+                <reportElement x="-5" y="85" width="130" height="1" uuid="ec9c9f24-7ce8-4a6d-91a3-4ee175bf9fbe"/>
+                <graphicElement>
+                    <pen lineStyle="Dashed"/>
+                </graphicElement>
+            </line>
+            <staticText>
+                <reportElement x="10" y="90" width="100" height="20" uuid="314964d2-cb68-4c3e-b92b-3a703c9622f0"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Thank You!]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="76" y="5" width="49" height="15" uuid="b21ca6fd-ec18-4072-bb7a-f20af87c6e22">
+                    <property name="com.jaspersoft.studio.unit.y" value="mm"/>
+                </reportElement>
+                <textElement textAlignment="Right" verticalAlignment="Top"/>
+                <textFieldExpression><![CDATA[$P{subTot}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="76" y="22" width="49" height="15" uuid="ac8b8d93-a554-4fcb-90f1-68cc7a066b4b">
+                    <property name="com.jaspersoft.studio.unit.y" value="mm"/>
+                </reportElement>
+                <textElement textAlignment="Right" verticalAlignment="Top"/>
+                <textFieldExpression><![CDATA[$P{totAmount}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="76" y="40" width="49" height="15" uuid="84a51c56-04b6-4e7e-ae38-31f8cce9ae0e"/>
+                <textElement textAlignment="Right" verticalAlignment="Top"/>
+                <textFieldExpression><![CDATA[$P{cash}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="76" y="58" width="49" height="15" uuid="03d41fae-fb5c-4263-a5e7-8826da9271ac"/>
+                <textElement textAlignment="Right" verticalAlignment="Top"/>
+                <textFieldExpression><![CDATA[$P{change}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+</jasperReport>
